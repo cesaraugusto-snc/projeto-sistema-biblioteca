@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Autor</title>
+</head>
+<body>
+    <h1>Cadastro de Autor</h1>
+    
+    <form id="form-autor">
+        <label>Nome: <input type="text" id="nome" required minlength="3"></label>
+        <button type="submit">Cadastrar</button>
+    </form>
+    
+    <div>
+        <a href="lista-autores.html">Ver Autores</a> | 
+        <a href="index.html">Voltar ao Menu</a>
+    </div>
+    
+    <script type="module">
+        import { Autor } from "./classes/Autor.js";
+        import { BancoDeDados } from "./classes/BancoDeDados.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const formAutor = document.getElementById("form-autor");
+            
+            formAutor.addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+                const nome = document.getElementById("nome").value;
+                
+                try {
+                    const autor = new Autor(nome);
+                    BancoDeDados.salvarAutor(autor);
+                    
+                    alert("Autor cadastrado com sucesso!");
+                    formAutor.reset();
+                } catch (error) {
+                    alert(`Erro ao cadastrar autor: ${error.message}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

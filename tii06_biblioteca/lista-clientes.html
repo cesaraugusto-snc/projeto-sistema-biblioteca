@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    
+    <div id="lista-clientes">
+        <!-- Será carregado pelo JavaScript -->
+    </div>
+    
+    <div>
+        <a href="cadastro-cliente.html">Cadastrar Novo Cliente</a> | 
+        <a href="index.html">Voltar ao Menu</a>
+    </div>
+    
+    <script type="module">
+        import { BancoDeDados } from "./classes/BancoDeDados.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const listaClientes = document.getElementById("lista-clientes");
+            
+            function carregarClientes() {
+                const clientes = BancoDeDados.listarClientes();
+                
+                listaClientes.innerHTML = "";
+                
+                if (clientes.length === 0) {
+                    listaClientes.innerHTML = "<p>Nenhum cliente cadastrado.</p>";
+                    return;
+                }
+                
+                const ul = document.createElement("ul");
+                
+                clientes.forEach(cliente => {
+                    const li = document.createElement("li");
+                    li.textContent = cliente.toString();
+                    
+                    // Botão para inativar
+                    if (cliente.ativo) {
+                        const btnInativar = document.createElement("button");
+                        btnInativar.textContent = "Inativar";
+                        btnInativar.addEventListener("click", () => {
+                            cliente.inativar();
+                            BancoDeDados.salvarCliente(cliente);
+                            carregarClientes();
+                        });
+                        li.appendChild(btnInativar);
+                    }
+                    
+                    ul.appendChild(li);
+                });
+                
+                listaClientes.appendChild(ul);
+            }
+            
+            carregarClientes();
+        });
+    </script>
+</body>
+</html>

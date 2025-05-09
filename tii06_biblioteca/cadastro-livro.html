@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Livro</title>
+</head>
+<body>
+    <h1>Cadastro de Livro</h1>
+    
+    <form id="form-livro">
+        <label>Título: <input type="text" id="titulo" required minlength="2"></label>
+        <label>Ano: <input type="number" id="ano" required min="0" max="2025"></label>
+        <label>
+            Autor:
+            <select id="autor" required>
+                <option value="">Selecione um autor</option>
+            </select>
+        </label>
+        <button type="submit">Cadastrar</button>
+    </form>
+    
+    <div>
+        <a href="lista-livros.html">Ver Livros</a> | 
+        <a href="cadastro-autor.html">Cadastrar Novo Autor</a> | 
+        <a href="index.html">Voltar ao Menu</a>
+    </div>
+    
+    <script type="module">
+        import { Livro } from "./classes/Livros.js";
+        import { BancoDeDados } from "./classes/BancoDeDados.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const formLivro = document.getElementById("form-livro");
+            const selectAutor = document.getElementById("autor");
+            
+            // Carrega a lista de autores no select
+            function carregarAutores() {
+                const autores = BancoDeDados.listarAutores();
+                
+                selectAutor.innerHTML = "<option value=''>Selecione um autor</option>";
+                
+                autores.forEach(autor => {
+                    if (autor.ativo) {
+                        const option = document.createElement("option");
+                        option.value = autor.id;
+                        option.textContent = autor.nome;
+                        selectAutor.appendChild(option);
+                    }
+                });
+            }
+            
+            carregarAutores();
+            
+            formLivro.addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+                const titulo = document.getElementById("titulo").value;
+                const ano = parseInt(document.getElementById("ano").value);
+                const autorId = selectAutor.value;
+                
+                if (!autorId) {
+                    alert("Selecione um autor válido!");
+                    return;
+                }
+                
+                try {
+                    const autor = BancoDeDados.buscarAutorPorId(autorId);
+                    if (!autor) {
+                        throw new Error("Autor não encontrado!");
+                    }
+                    
+                    const livro = new Livro(titulo, ano, autor);
+                    BancoDeDados.salvarLivro(livro);
+                    
+                    alert("Livro cadastrado com sucesso!");
+                    formLivro.reset();
+                } catch (error) {
+                    alert(`Erro ao cadastrar livro: ${error.message}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

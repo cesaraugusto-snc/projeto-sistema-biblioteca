@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Autores</title>
+</head>
+<body>
+    <h1>Lista de Autores</h1>
+    
+    <div id="lista-autores">
+        <!-- Será carregado pelo JavaScript -->
+    </div>
+    
+    <div>
+        <a href="cadastro-autor.html">Cadastrar Novo Autor</a> | 
+        <a href="index.html">Voltar ao Menu</a>
+    </div>
+    
+    <script type="module">
+        import { BancoDeDados } from "./classes/BancoDeDados.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const listaAutores = document.getElementById("lista-autores");
+            
+            function carregarAutores() {
+                const autores = BancoDeDados.listarAutores();
+                
+                listaAutores.innerHTML = "";
+                
+                if (autores.length === 0) {
+                    listaAutores.innerHTML = "<p>Nenhum autor cadastrado.</p>";
+                    return;
+                }
+                
+                const ul = document.createElement("ul");
+                
+                autores.forEach(autor => {
+                    const li = document.createElement("li");
+                    li.textContent = autor.toString();
+                    
+                    // Botão para inativar
+                    if (autor.ativo) {
+                        const btnInativar = document.createElement("button");
+                        btnInativar.textContent = "Inativar";
+                        btnInativar.addEventListener("click", () => {
+                            autor.inativar();
+                            BancoDeDados.salvarAutor(autor);
+                            carregarAutores();
+                        });
+                        li.appendChild(btnInativar);
+                    }
+                    
+                    ul.appendChild(li);
+                });
+                
+                listaAutores.appendChild(ul);
+            }
+            
+            carregarAutores();
+        });
+    </script>
+</body>
+</html>

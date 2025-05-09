@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Livros</title>
+</head>
+<body>
+    <h1>Lista de Livros</h1>
+    
+    <div id="lista-livros">
+   
+    </div>
+    
+    <div>
+        <a href="cadastro-livro.html">Cadastrar Novo Livro</a> | 
+        <a href="index.html">Voltar ao Menu</a>
+    </div>
+    
+    <script type="module">
+        import { BancoDeDados } from "./classes/BancoDeDados.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const listaLivros = document.getElementById("lista-livros");
+            
+            function carregarLivros() {
+                const livros = BancoDeDados.listarLivros();
+                
+                listaLivros.innerHTML = "";
+                
+                if (livros.length === 0) {
+                    listaLivros.innerHTML = "<p>Nenhum livro cadastrado.</p>";
+                    return;
+                }
+                
+                const ul = document.createElement("ul");
+                
+                livros.forEach(livro => {
+                    const li = document.createElement("li");
+                    li.textContent = livro.toString();
+                    
+                    // Botão para inativar
+                    if (livro.ativo) {
+                        const btnInativar = document.createElement("button");
+                        btnInativar.textContent = "Inativar";
+                        btnInativar.addEventListener("click", () => {
+                            livro.inativar();
+                            BancoDeDados.salvarLivro(livro);
+                            carregarLivros();
+                        });
+                        li.appendChild(btnInativar);
+                    }
+                    
+                    ul.appendChild(li);
+                });
+                
+                listaLivros.appendChild(ul);
+            }
+            
+            carregarLivros();
+        });
+    </script>
+</body>
+</html>
