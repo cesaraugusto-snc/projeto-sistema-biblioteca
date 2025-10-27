@@ -1,17 +1,15 @@
-# atividade_biblioteca
-Atividade para aprovação da UC6
+Sistema simples de gerenciamento de biblioteca usando HTML, CSS e JavaScript. Capaz de cadastrar e listar livros.
 
-# Sistema de Gerenciamento de Biblioteca
+Sistema de Gerenciamento de Biblioteca
 
-
-## Objetivo da atividade
+ Objetivo da atividade
 
 Desenvolver um sistema orientado a objetos em JavaScript, inspirado no sistema bancário apresentado no repositório [tii09-uc6](https://github.com/aeciobrito/tii09-uc6/tree/main/projetos/bancario), utilizando classes, encapsulamento, herança, Local Storage e operações CRUD completas. O sistema terá foco na gestão de autores, livros e clientes de uma biblioteca.
 Descrição do problema
 
 Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de livros, autores e clientes. Para isso, será necessário construir um sistema baseado em objetos que simula as funcionalidades básicas de uma aplicação real.
 
-## A estrutura do sistema será composta por três entidades principais:
+A estrutura do sistema será composta por três entidades principais:
 
     Pessoa (classe base): representa os dados em comum entre autores e clientes.
 
@@ -23,7 +21,7 @@ Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de l
 
     Cada entidade deverá ser persistida no Local Storage, com prefixos próprios e IDs únicos gerados automaticamente, seguindo o padrão já utilizado no sistema bancário.
 
-## Requisitos obrigatórios
+ Requisitos obrigatórios
 
  - Classe Pessoa (abstrata ou base):
 
@@ -55,7 +53,7 @@ Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de l
 
       Em cada tela de cadastro, deve ser possível associar corretamente um livro a um autor existente.
 
-## Regras adicionais
+Regras adicionais
 
     Deve-se seguir o mesmo padrão de encapsulamento com atributos privados (#), uso de getters, métodos de conversão (fromJSONorObject) e separação entre lógica e interface.
 
@@ -65,7 +63,7 @@ Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de l
 
     A inativação de autores ou clientes deve refletir visualmente nas listagens, semelhante ao modelo de "[INATIVO]".
 
-## Critérios de avaliação
+Critérios de avaliação
 
     Aplicação correta dos conceitos de POO: herança, encapsulamento, reutilização.
 
@@ -77,7 +75,7 @@ Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de l
 
     Clareza e organização geral da solução.
 
-## Entregável:
+Entregável:
 
 Faça um clone local desse repositório e crie uma branch com seu nome
 
