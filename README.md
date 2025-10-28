@@ -29,14 +29,14 @@ Este projeto foi uma imersão profunda em JavaScript moderno (ES6+) e POO.
 ## 🖼️ Screenshots da Aplicação
 
 ### Cadastro
-![Tela de Cadastro de Autor](./assets/cadastro-autor.png)
-![Tela de Cadastro de Cliente](./assets/cadastrar-clientes.png)
-![Tela de Cadastro de Livro](./assets/cadastrar-livros.png)
+![Tela de Cadastro de Autor](./tii06_biblioteca/assets/cadastro-autor.png)
+![Tela de Cadastro de Cliente](./tii06_biblioteca/assets/cadastrar-clientes.png)
+![Tela de Cadastro de Livro](./tii06_biblioteca/assets/cadastrar-livros.png)
 
 ### Listagem e Gerenciamento
-![Tela de Listagem de Autores](./assets/listar-autores.png)
-![Tela de Listagem de Clientes](./assets/listar-clientes.png)
-![Tela de Listagem de Livros](./assets/listar-livros.png)
+![Tela de Listagem de Autores](./tii06_biblioteca/assets/listar-autores.png)
+![Tela de Listagem de Clientes](./tii06_biblioteca/assets/listar-clientes.png)
+![Tela de Listagem de Livros](./tii06_biblioteca/assets/listar-livros.png)
 
 ## 🏁 Como Executar
 
