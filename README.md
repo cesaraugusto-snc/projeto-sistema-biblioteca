@@ -29,7 +29,7 @@ Este projeto foi uma imersão profunda em JavaScript moderno (ES6+) e POO.
 ## 🖼️ Screenshots da Aplicação
 
 ### Cadastro
-![Tela de Cadastro de Autor](./assets/cadastro-do-autor.png)
+![Tela de Cadastro de Autor](./assets/cadastro-autor.png)
 ![Tela de Cadastro de Cliente](./assets/cadastrar-clientes.png)
 ![Tela de Cadastro de Livro](./assets/cadastrar-livros.png)
 
