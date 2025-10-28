@@ -1,87 +1,65 @@
-Sistema simples de gerenciamento de biblioteca usando HTML, CSS e JavaScript. Capaz de cadastrar e listar livros.
+##📚 Sistema de Gerenciamento de Biblioteca
 
-Sistema de Gerenciamento de Biblioteca
+Um sistema web para gerenciamento de biblioteca, focado na aplicação de conceitos de Programação Orientada a Objetos (POO) com JavaScript puro e persistência de dados no Local Storage.
 
- Objetivo da atividade
+Este projeto foi desenvolvido como uma solução prática para os desafios de cadastro e gerenciamento de livros, autores e clientes, demonstrando um ciclo de vida de dados completo com operações CRUD.
 
-Desenvolver um sistema orientado a objetos em JavaScript, inspirado no sistema bancário apresentado no repositório [tii09-uc6](https://github.com/aeciobrito/tii09-uc6/tree/main/projetos/bancario), utilizando classes, encapsulamento, herança, Local Storage e operações CRUD completas. O sistema terá foco na gestão de autores, livros e clientes de uma biblioteca.
-Descrição do problema
+🚀 Funcionalidades Principais
 
-Uma biblioteca deseja informatizar seu processo de cadastro e gerenciamento de livros, autores e clientes. Para isso, será necessário construir um sistema baseado em objetos que simula as funcionalidades básicas de uma aplicação real.
+* **Gerenciamento de Autores:** CRUD completo (Criar, Ler, Atualizar, Inativar) para autores.
+* **Gerenciamento de Clientes:** CRUD completo (Criar, Ler, Atualizar, Inativar) para clientes.
+* **Gerenciamento de Livros:** CRUD completo (Criar, Ler, Atualizar, Inativar) para livros, com a associação obrigatória a um autor existente.
+* **Persistência de Dados:** Todas as informações são salvas e recuperadas do **Local Storage** do navegador, permitindo que os dados não se percam ao recarregar a página.
 
-A estrutura do sistema será composta por três entidades principais:
+## 💻 Conceitos Técnicos Aplicados
 
-    Pessoa (classe base): representa os dados em comum entre autores e clientes.
+Este projeto foi uma imersão profunda em JavaScript moderno (ES6+) e POO.
 
-    Autor: herda de Pessoa e é utilizado para associar autores aos livros.
+* **Programação Orientada a Objetos (POO):**
+    * **Classes:** Estruturação de todo o sistema em classes (`Pessoa`, `Autor`, `Cliente`, `Livro`, `BancoDeDados`).
+    * **Herança:** Reutilização de código com a classe base `Pessoa` sendo estendida por `Autor` e `Cliente`.
+    * **Encapsulamento:** Proteção de atributos internos utilizando campos privados (`#`).
+    * **Métodos Estáticos:** Utilização de métodos auxiliares e de conversão (como `fromJSONorObject`).
 
-    Cliente: herda de Pessoa e representa os usuários que podem pegar livros emprestados (essa funcionalidade pode ser incluída em etapas futuras).
+* **Gerenciamento de Dados:**
+    * **Local Storage:** Usado como banco de dados principal da aplicação.
+    * **CRUD Lógico:** Os registros não são deletados, mas sim "inativados" (soft delete), preservando a integridade dos dados.
+    * **IDs Únicos:** Geração de IDs prefixados (ex: `autor-`, `livro-`) para garantir a fácil recuperação e gerenciamento no Local Storage.
 
-    Livro: representa uma obra literária, que deve obrigatoriamente estar associada a um autor.
+## 🖼️ Screenshots da Aplicação
 
-    Cada entidade deverá ser persistida no Local Storage, com prefixos próprios e IDs únicos gerados automaticamente, seguindo o padrão já utilizado no sistema bancário.
+### Cadastro
+![Tela de Cadastro de Autor](./assets/cadastro-do-autor.png)
+![Tela de Cadastro de Cliente](./assets/cadastrar-clientes.png)
+![Tela de Cadastro de Livro](./assets/cadastrar-livros.png)
 
- Requisitos obrigatórios
+### Listagem e Gerenciamento
+![Tela de Listagem de Autores](./assets/listar-autores.png)
+![Tela de Listagem de Clientes](./assets/listar-clientes.png)
+![Tela de Listagem de Livros](./assets/listar-livros.png)
 
- - Classe Pessoa (abstrata ou base):
+## 🏁 Como Executar
 
-      Contém os atributos comuns id, nome, ativo.
+Este projeto utiliza Módulos JavaScript (ES Modules), portanto, **não funcionará** se você abrir o arquivo `index.html` diretamente no navegador (via protocolo `file:///`).
 
-      Métodos como toString() e atualizarNome().
+É necessário executá-lo a partir de um servidor local.
 
- - Classe Autor e Cliente:
+### Opção 1: Com a extensão "Live Server" (Recomendado)
 
-      Herdam os atributos e métodos da classe Pessoa.
+1.  Clone este repositório: `git clone https://github.com/cesaraugusto-snc/projeto-sistema-biblioteca.git`
+2.  Navegue até a pasta do projeto e abra-a no **Visual Studio Code**.
+3.  Caso não tenha, instale a extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+4.  Clique com o botão direito no arquivo `index.html`.
+5.  Selecione a opção **"Open with Live Server"**.
 
-      Possuem prefixos distintos para gerar IDs únicos no Local Storage (autor-, cliente-).
+### Opção 2: Usando um servidor Python (Alternativa)
 
- - Classe Livro:
+Se você possui o Python instalado em sua máquina:
 
-      Contém id, titulo, ano, autor (referência à instância da classe Autor), ativo.
-
-      Métodos como toString(), além de operações de criação, listagem, edição e remoção lógica (desativação).
-
- - Classe BancoDeDados:
-
-      Gerencia o armazenamento e recuperação de objetos no Local Storage.
-
-      Possui métodos genéricos para busca por prefixo e métodos específicos para cada entidade.
-
- - Interface HTML (mínima):
-
-      Páginas para cadastro e listagem de autores, livros e clientes.
-
-      Em cada tela de cadastro, deve ser possível associar corretamente um livro a um autor existente.
-
-Regras adicionais
-
-    Deve-se seguir o mesmo padrão de encapsulamento com atributos privados (#), uso de getters, métodos de conversão (fromJSONorObject) e separação entre lógica e interface.
-
-    Os dados devem ser persistidos corretamente, com a possibilidade de recuperar todos os registros de uma entidade a partir do Local Storage.
-
-    O sistema deve permitir a criação de múltiplos livros para um mesmo autor.
-
-    A inativação de autores ou clientes deve refletir visualmente nas listagens, semelhante ao modelo de "[INATIVO]".
-
-Critérios de avaliação
-
-    Aplicação correta dos conceitos de POO: herança, encapsulamento, reutilização.
-
-    Organização do código em arquivos separados para cada classe.
-
-    Interface funcional e compatível com as operações de CRUD.
-
-    Uso adequado do Local Storage.
-
-    Clareza e organização geral da solução.
-
-Entregável:
-
-Faça um clone local desse repositório e crie uma branch com seu nome
-
-Envie um merge request com uma branch em seu nome ao finalizar
-
-(Opcionalmente, faça um fork do repositório e crie uma branch com seu nome. Envie um merge request da sua branch ao finalizar)
-
-Prazo de engrega: 02/05/2025
-
+1.  Clone este repositório: `git clone https://github.com/cesaraugusto-snc/projeto-sistema-biblioteca.git`
+2.  Navegue até a pasta do projeto pelo seu terminal (Prompt de Comando, PowerShell, etc.).
+3.  Execute o comando:
+    ```bash
+    python -m http.server
+    ```
+4.  Abra seu navegador e acesse `http://localhost:8000`.
